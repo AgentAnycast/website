@@ -1,7 +1,9 @@
+import logoDark from '../assets/logo-dark.png'
+
 export default function Logo({ size = 32 }: { size?: number }) {
   return (
     <img
-      src="/logo-dark.png"
+      src={logoDark}
       alt="AgentAnycast"
       width={size}
       height={size}

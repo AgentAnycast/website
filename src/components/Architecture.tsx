@@ -1,4 +1,5 @@
 import { useFadeIn } from '../hooks/useFadeIn'
+import architectureSvg from '../assets/architecture.svg'
 
 export default function Architecture() {
   const ref = useFadeIn()
@@ -19,7 +20,7 @@ export default function Architecture() {
         {/* Architecture diagram */}
         <div className="rounded-xl border border-navy-700/50 overflow-hidden bg-navy-900/50">
           <img
-            src="/architecture.svg"
+            src={architectureSvg}
             alt="AgentAnycast sidecar architecture showing App → SDK → gRPC → Go daemon → libp2p → Remote Peer"
             className="w-full"
           />
