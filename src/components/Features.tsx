@@ -56,7 +56,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Decentralized Identity',
-    description: 'Ed25519 keys with W3C DID:key standard. No certificates, DNS records, or accounts needed.',
+    description: 'Ed25519 keys with W3C DID (did:key, did:web, did:dns) and Verifiable Credentials. No certificates or accounts needed.',
     color: 'text-cyan-400',
     borderColor: 'border-cyan-400/20',
     bgColor: 'bg-cyan-400/5',
@@ -68,7 +68,7 @@ const FEATURES = [
       </svg>
     ),
     title: 'Framework Adapters',
-    description: 'One-line integration with CrewAI, LangGraph, and MCP tools. Bridge HTTP A2A agents seamlessly.',
+    description: 'One-line integration with CrewAI, LangGraph, Google ADK, and OpenAI Agents SDK. MCP server built into the daemon.',
     color: 'text-rose-400',
     borderColor: 'border-rose-400/20',
     bgColor: 'bg-rose-400/5',

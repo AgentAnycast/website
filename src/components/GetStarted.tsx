@@ -49,13 +49,13 @@ await node.serveForever();`
 
 const TS_CLIENT = `import { Node } from "agentanycast";
 
-const node = new Node({ card: { name: "Client" } });
+const node = new Node({ card: { name: "Client", skills: [] } });
 await node.start();
 
-const handle = await node.sendTask("12D3KooW...", {
-  role: "user",
-  parts: [{ text: "Hello!" }],
-});
+const handle = await node.sendTask(
+  { role: "user", parts: [{ text: "Hello!" }] },
+  { peerId: "12D3KooW..." },
+);
 
 const result = await handle.wait();
 console.log(result.artifacts[0].parts[0].text);`

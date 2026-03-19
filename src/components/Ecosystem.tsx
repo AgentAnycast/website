@@ -2,14 +2,19 @@ import { useFadeIn } from '../hooks/useFadeIn'
 
 const INTEGRATIONS = [
   { name: 'A2A Protocol', desc: 'Native' },
-  { name: 'MCP', desc: 'Tool mapping' },
+  { name: 'MCP', desc: 'Server + Tool mapping' },
+  { name: 'ANP', desc: 'Bridge' },
+  { name: 'W3C DID', desc: 'did:key / did:web' },
   { name: 'CrewAI', desc: 'Adapter' },
   { name: 'LangGraph', desc: 'Adapter' },
+  { name: 'Google ADK', desc: 'Adapter' },
+  { name: 'OpenAI Agents', desc: 'Adapter' },
   { name: 'Claude Desktop', desc: 'MCP Server' },
   { name: 'ChatGPT', desc: 'MCP Server' },
   { name: 'Cursor', desc: 'MCP Server' },
   { name: 'VS Code', desc: 'MCP Server' },
   { name: 'Gemini CLI', desc: 'MCP Server' },
+  { name: 'AGNTCY', desc: 'Directory' },
 ]
 
 export default function Ecosystem() {

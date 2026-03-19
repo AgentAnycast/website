@@ -43,6 +43,20 @@ const COMPARISON = [
     ngrok: false,
     directTcp: false,
   },
+  {
+    feature: 'MCP server',
+    agentanycast: true,
+    httpA2A: false,
+    ngrok: false,
+    directTcp: false,
+  },
+  {
+    feature: 'Framework adapters',
+    agentanycast: '4 built-in',
+    httpA2A: 'Manual',
+    ngrok: false,
+    directTcp: false,
+  },
 ]
 
 function Cell({ value }: { value: boolean | string }) {

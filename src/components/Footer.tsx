@@ -2,8 +2,9 @@ import Logo from './Logo'
 
 const LINKS = {
   Project: [
-    { label: 'Documentation', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/getting-started.md' },
+    { label: 'Getting Started', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/getting-started.md' },
     { label: 'Architecture', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/architecture.md' },
+    { label: 'Deployment', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/deployment.md' },
     { label: 'Protocol', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/protocol.md' },
     { label: 'Examples', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/examples.md' },
   ],
