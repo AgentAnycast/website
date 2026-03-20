@@ -1,26 +1,27 @@
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
 
-const LINKS = {
-  Project: [
-    { label: 'Getting Started', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/getting-started.md' },
-    { label: 'Architecture', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/architecture.md' },
-    { label: 'Deployment', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/deployment.md' },
-    { label: 'Protocol', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/protocol.md' },
-    { label: 'Examples', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/docs/examples.md' },
-  ],
-  Community: [
-    { label: 'GitHub', href: 'https://github.com/AgentAnycast' },
-    { label: 'Discussions', href: 'https://github.com/AgentAnycast/agentanycast/discussions' },
-    { label: 'Issues', href: 'https://github.com/AgentAnycast/agentanycast/issues' },
-    { label: 'Contributing', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/CONTRIBUTING.md' },
-  ],
-  SDKs: [
-    { label: 'Python SDK', href: 'https://github.com/AgentAnycast/agentanycast-python' },
-    { label: 'TypeScript SDK', href: 'https://github.com/AgentAnycast/agentanycast-ts' },
-    { label: 'Go Daemon', href: 'https://github.com/AgentAnycast/agentanycast-node' },
-    { label: 'Proto', href: 'https://github.com/AgentAnycast/agentanycast-proto' },
-  ],
-}
+const DOC_LINKS = [
+  { label: 'Getting Started', to: '/docs/getting-started' },
+  { label: 'Architecture', to: '/docs/architecture' },
+  { label: 'Deployment', to: '/docs/deployment' },
+  { label: 'Protocol', to: '/docs/protocol' },
+  { label: 'Examples', to: '/docs/examples' },
+]
+
+const COMMUNITY_LINKS = [
+  { label: 'GitHub', href: 'https://github.com/AgentAnycast' },
+  { label: 'Discussions', href: 'https://github.com/AgentAnycast/agentanycast/discussions' },
+  { label: 'Issues', href: 'https://github.com/AgentAnycast/agentanycast/issues' },
+  { label: 'Contributing', href: 'https://github.com/AgentAnycast/agentanycast/blob/main/CONTRIBUTING.md' },
+]
+
+const SDK_LINKS = [
+  { label: 'Python SDK', href: 'https://github.com/AgentAnycast/agentanycast-python' },
+  { label: 'TypeScript SDK', href: 'https://github.com/AgentAnycast/agentanycast-ts' },
+  { label: 'Go Daemon', href: 'https://github.com/AgentAnycast/agentanycast-node' },
+  { label: 'Proto', href: 'https://github.com/AgentAnycast/agentanycast-proto' },
+]
 
 export default function Footer() {
   return (
@@ -40,26 +41,60 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Link columns */}
-          {Object.entries(LINKS).map(([title, links]) => (
-            <div key={title}>
-              <h4 className="text-sm font-semibold text-gray-300 mb-4">{title}</h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Docs */}
+          <div>
+            <h4 className="text-sm font-semibold text-gray-300 mb-4">Documentation</h4>
+            <ul className="space-y-2.5">
+              {DOC_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
+                    className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Community */}
+          <div>
+            <h4 className="text-sm font-semibold text-gray-300 mb-4">Community</h4>
+            <ul className="space-y-2.5">
+              {COMMUNITY_LINKS.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* SDKs */}
+          <div>
+            <h4 className="text-sm font-semibold text-gray-300 mb-4">SDKs</h4>
+            <ul className="space-y-2.5">
+              {SDK_LINKS.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-gray-500 hover:text-gray-300 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom bar */}
@@ -68,7 +103,7 @@ export default function Footer() {
             SDKs &amp; Proto: Apache-2.0 &middot; Daemon &amp; Relay: FSL-1.1-ALv2
           </p>
           <p className="text-xs text-gray-600">
-            Built with libp2p
+            Built with libp2p &middot; Powered by React
           </p>
         </div>
       </div>

@@ -2,16 +2,50 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AgentAnycast - Decentralized P2P Runtime for AI Agents</title>
-    <meta name="description" content="Connect AI agents across any network. End-to-end encrypted, NAT-traversing, skill-based anycast routing. Python & TypeScript SDKs." />
+    <meta name="description" content="Connect AI agents across any network. End-to-end encrypted with Noise_XX, automatic NAT traversal, skill-based anycast routing. Python & TypeScript SDKs." />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://agentanycast.io/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://agentanycast.io/" />
+    <meta property="og:title" content="AgentAnycast - Decentralized P2P Runtime for AI Agents" />
+    <meta property="og:description" content="Connect AI agents across any network. End-to-end encrypted, NAT-traversing, skill-based anycast routing." />
+    <meta property="og:image" content="https://agentanycast.io/og-image.png" />
+    <meta property="og:site_name" content="AgentAnycast" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AgentAnycast - Decentralized P2P Runtime for AI Agents" />
+    <meta name="twitter:description" content="Connect AI agents across any network. End-to-end encrypted, NAT-traversing, skill-based anycast routing." />
+    <meta name="twitter:image" content="https://agentanycast.io/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-[#0a0e1a] text-gray-100 antialiased">
     <div id="root"></div>
+    <script>
+      // GitHub Pages SPA redirect restoration
+      (function(l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      }(window.location))
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

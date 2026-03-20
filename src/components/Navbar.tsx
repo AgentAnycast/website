@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Logo from './Logo'
-
-const NAV_LINKS = [
-  { label: 'Features', href: '#features' },
-  { label: 'Architecture', href: '#architecture' },
-  { label: 'Get Started', href: '#get-started' },
-  { label: 'Ecosystem', href: '#ecosystem' },
-]
 
 const GITHUB_URL = 'https://github.com/AgentAnycast'
 
-export default function Navbar() {
+interface Props {
+  onMenuToggle?: () => void
+  isDocsPage?: boolean
+  onSearchOpen?: () => void
+}
+
+export default function Navbar({ onMenuToggle, isDocsPage, onSearchOpen }: Props) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+
+  const isOnDocsPage = isDocsPage || location.pathname.startsWith('/docs')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -20,26 +23,41 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const landingLinks = [
+    { label: 'Features', href: '/#features' },
+    { label: 'Architecture', href: '/#architecture' },
+    { label: 'Get Started', href: '/#get-started' },
+    { label: 'Ecosystem', href: '/#ecosystem' },
+  ]
+
+  const handleMenuClick = () => {
+    if (isOnDocsPage && onMenuToggle) {
+      onMenuToggle()
+    } else {
+      setMenuOpen(!menuOpen)
+    }
+  }
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || isOnDocsPage
           ? 'bg-navy-950/80 backdrop-blur-xl border-b border-navy-700/50'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group">
           <Logo size={32} />
           <span className="text-lg font-bold text-white tracking-tight">
             Agent<span className="text-accent-light">Anycast</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
+        <div className="hidden md:flex items-center gap-6">
+          {landingLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -48,6 +66,33 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/docs"
+            className={`text-sm transition-colors ${
+              isOnDocsPage
+                ? 'text-accent-light font-medium'
+                : 'text-gray-400 hover:text-white'
+            }`}
+          >
+            Docs
+          </Link>
+
+          {/* Search button */}
+          {onSearchOpen && (
+            <button
+              onClick={onSearchOpen}
+              className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-500 bg-navy-800/50 border border-navy-700 rounded-lg hover:border-navy-600 hover:text-gray-300 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span className="hidden lg:inline">Search</span>
+              <kbd className="hidden lg:inline text-xs text-gray-600 bg-navy-900 px-1.5 py-0.5 rounded border border-navy-700">
+                {navigator.platform?.includes('Mac') ? '⌘' : 'Ctrl'}K
+              </kbd>
+            </button>
+          )}
+
           <a
             href={GITHUB_URL}
             target="_blank"
@@ -55,32 +100,38 @@ export default function Navbar() {
             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
           >
             <GitHubIcon />
-            GitHub
           </a>
         </div>
 
         {/* Mobile menu button */}
-        <button
-          className="md:hidden text-gray-400 hover:text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? (
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          ) : (
+        <div className="md:hidden flex items-center gap-2">
+          {onSearchOpen && (
+            <button
+              onClick={onSearchOpen}
+              className="p-2 text-gray-400 hover:text-white"
+              aria-label="Search"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          )}
+          <button
+            className="text-gray-400 hover:text-white"
+            onClick={handleMenuClick}
+            aria-label="Toggle menu"
+          >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-          )}
-        </button>
+          </button>
+        </div>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
+      {/* Mobile menu (landing page only) */}
+      {!isOnDocsPage && menuOpen && (
         <div className="md:hidden bg-navy-950/95 backdrop-blur-xl border-b border-navy-700/50 px-6 py-4 space-y-3">
-          {NAV_LINKS.map((link) => (
+          {landingLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -90,6 +141,13 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <Link
+            to="/docs"
+            className="block text-sm text-gray-400 hover:text-white transition-colors"
+            onClick={() => setMenuOpen(false)}
+          >
+            Docs
+          </Link>
           <a
             href={GITHUB_URL}
             target="_blank"

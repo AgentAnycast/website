@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useFadeIn } from '../hooks/useFadeIn'
+import CopyButton from './CopyButton'
 
 const PYTHON_SERVER = `from agentanycast import Node, AgentCard, Skill
 
@@ -73,14 +75,15 @@ const INSTALL: Record<Lang, string> = {
   typescript: 'npm install agentanycast',
 }
 
+const LANG_LABEL: Record<Lang, string> = {
+  python: 'Python',
+  typescript: 'TypeScript',
+}
+
 export default function GetStarted() {
   const [lang, setLang] = useState<Lang>('python')
   const [tab, setTab] = useState<Tab>('server')
   const ref = useFadeIn()
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text)
-  }
 
   return (
     <section id="get-started" className="py-24 px-6">
@@ -99,15 +102,7 @@ export default function GetStarted() {
           <div className="inline-flex items-center gap-3 px-5 py-3 rounded-lg bg-navy-900 border border-navy-700/50 font-mono text-sm">
             <span className="text-green">$</span>
             <span className="text-gray-300">{INSTALL[lang]}</span>
-            <button
-              onClick={() => copyToClipboard(INSTALL[lang])}
-              className="text-gray-500 hover:text-gray-300 transition-colors ml-2"
-              title="Copy"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
+            <CopyButton text={INSTALL[lang]} className="text-gray-500 hover:text-gray-300 ml-2" />
           </div>
         </div>
 
@@ -116,27 +111,19 @@ export default function GetStarted() {
           {/* Tab bar */}
           <div className="flex items-center justify-between border-b border-navy-700/50 px-4">
             <div className="flex">
-              {/* Language tabs */}
-              <button
-                onClick={() => setLang('python')}
-                className={`px-4 py-3 text-sm font-medium transition-colors border-b-2 ${
-                  lang === 'python'
-                    ? 'text-accent-light border-accent'
-                    : 'text-gray-500 border-transparent hover:text-gray-300'
-                }`}
-              >
-                Python
-              </button>
-              <button
-                onClick={() => setLang('typescript')}
-                className={`px-4 py-3 text-sm font-medium transition-colors border-b-2 ${
-                  lang === 'typescript'
-                    ? 'text-accent-light border-accent'
-                    : 'text-gray-500 border-transparent hover:text-gray-300'
-                }`}
-              >
-                TypeScript
-              </button>
+              {(Object.keys(CODE) as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-4 py-3 text-sm font-medium transition-colors border-b-2 ${
+                    lang === l
+                      ? 'text-accent-light border-accent'
+                      : 'text-gray-500 border-transparent hover:text-gray-300'
+                  }`}
+                >
+                  {LANG_LABEL[l]}
+                </button>
+              ))}
             </div>
 
             <div className="flex gap-1">
@@ -168,31 +155,24 @@ export default function GetStarted() {
             <pre className="p-5 overflow-x-auto text-sm leading-relaxed">
               <code className="font-mono text-gray-300">{CODE[lang][tab]}</code>
             </pre>
-            <button
-              onClick={() => copyToClipboard(CODE[lang][tab])}
-              className="absolute top-3 right-3 p-2 text-gray-500 hover:text-gray-300 transition-colors rounded-md hover:bg-navy-800"
-              title="Copy code"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-            </button>
+            <CopyButton
+              text={CODE[lang][tab]}
+              className="absolute top-3 right-3 p-2 text-gray-500 hover:text-gray-300 rounded-md hover:bg-navy-800"
+            />
           </div>
         </div>
 
-        {/* Docs link */}
+        {/* Docs link — internal now */}
         <div className="text-center mt-8">
-          <a
-            href="https://github.com/AgentAnycast/agentanycast/blob/main/docs/getting-started.md"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/docs/getting-started"
             className="inline-flex items-center gap-2 text-accent-light hover:text-white transition-colors text-sm font-medium"
           >
             Read the full documentation
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
