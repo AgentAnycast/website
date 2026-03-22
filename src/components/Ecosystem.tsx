@@ -9,6 +9,8 @@ const INTEGRATIONS = [
   { name: 'LangGraph', desc: 'Adapter' },
   { name: 'Google ADK', desc: 'Adapter' },
   { name: 'OpenAI Agents', desc: 'Adapter' },
+  { name: 'Claude Agent SDK', desc: 'Adapter' },
+  { name: 'AWS Strands', desc: 'Adapter' },
   { name: 'Claude Desktop', desc: 'MCP Server' },
   { name: 'ChatGPT', desc: 'MCP Server' },
   { name: 'Cursor', desc: 'MCP Server' },

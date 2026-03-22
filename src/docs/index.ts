@@ -10,6 +10,12 @@ import mcpSetup from '../../docs/integrations/mcp-setup.md?raw'
 import dify from '../../docs/integrations/dify.md?raw'
 import langflow from '../../docs/integrations/langflow.md?raw'
 import n8n from '../../docs/integrations/n8n.md?raw'
+import glossary from '../../docs/glossary.md?raw'
+import troubleshooting from '../../docs/troubleshooting.md?raw'
+import observability from '../../docs/observability.md?raw'
+import cliReference from '../../docs/cli-reference.md?raw'
+import securityModel from '../../docs/security-model.md?raw'
+import configuration from '../../docs/configuration.md?raw'
 
 export interface DocEntry {
   slug: string
@@ -23,6 +29,8 @@ export const DOC_GROUPS = [
   'Core Concepts',
   'SDKs',
   'Guides',
+  'Operations',
+  'Reference',
   'Integrations',
 ] as const
 
@@ -34,6 +42,12 @@ export const docs: DocEntry[] = [
   { slug: 'typescript-sdk', title: 'TypeScript SDK', content: typescriptSdk, group: 'SDKs' },
   { slug: 'deployment', title: 'Deployment Guide', content: deployment, group: 'Guides' },
   { slug: 'examples', title: 'Code Examples', content: examples, group: 'Guides' },
+  { slug: 'configuration', title: 'Configuration', content: configuration, group: 'Operations' },
+  { slug: 'observability', title: 'Observability & Monitoring', content: observability, group: 'Operations' },
+  { slug: 'security-model', title: 'Security Model', content: securityModel, group: 'Operations' },
+  { slug: 'troubleshooting', title: 'Troubleshooting', content: troubleshooting, group: 'Operations' },
+  { slug: 'cli-reference', title: 'CLI Reference', content: cliReference, group: 'Reference' },
+  { slug: 'glossary', title: 'Glossary', content: glossary, group: 'Reference' },
   { slug: 'integrations', title: 'Overview', content: integrationsOverview, group: 'Integrations' },
   { slug: 'integrations/mcp-setup', title: 'MCP Server', content: mcpSetup, group: 'Integrations' },
   { slug: 'integrations/dify', title: 'Dify', content: dify, group: 'Integrations' },

@@ -4,11 +4,12 @@ import CopyButton from './CopyButton'
 import NetworkCanvas from './NetworkCanvas'
 import { useGitHubStars } from '../hooks/useGitHubStars'
 
-type PackageManager = 'pip' | 'npm' | 'docker'
+type PackageManager = 'pip' | 'npm' | 'uvx' | 'docker'
 
 const INSTALL_CMDS: Record<PackageManager, string> = {
   pip: 'pip install agentanycast',
   npm: 'npm install agentanycast',
+  uvx: 'uvx agentanycast-mcp',
   docker: 'docker compose up -d',
 }
 
@@ -52,7 +53,7 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-          Decentralized P2P Runtime{' '}
+          The Connection Layer{' '}
           <br className="hidden sm:block" />
           <span className="bg-gradient-to-r from-accent-light to-blue-300 bg-clip-text text-transparent">
             for AI Agents
@@ -61,7 +62,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Connect AI agents across any network. End-to-end encrypted with Noise_XX.
+          Connect agents across any network and transport. End-to-end encrypted.
           NAT traversal built in. Skill-based anycast routing. Zero configuration.
         </p>
 
