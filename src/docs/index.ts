@@ -10,6 +10,7 @@ import mcpSetup from '../../docs/integrations/mcp-setup.md?raw'
 import dify from '../../docs/integrations/dify.md?raw'
 import langflow from '../../docs/integrations/langflow.md?raw'
 import n8n from '../../docs/integrations/n8n.md?raw'
+import agentgateway from '../../docs/integrations/agentgateway.md?raw'
 import glossary from '../../docs/glossary.md?raw'
 import troubleshooting from '../../docs/troubleshooting.md?raw'
 import observability from '../../docs/observability.md?raw'
@@ -53,6 +54,7 @@ export const docs: DocEntry[] = [
   { slug: 'integrations/dify', title: 'Dify', content: dify, group: 'Integrations' },
   { slug: 'integrations/langflow', title: 'Langflow', content: langflow, group: 'Integrations' },
   { slug: 'integrations/n8n', title: 'n8n', content: n8n, group: 'Integrations' },
+  { slug: 'integrations/agentgateway', title: 'agentgateway', content: agentgateway, group: 'Integrations' },
 ]
 
 export function getDoc(slug: string): DocEntry | undefined {
