@@ -17,6 +17,12 @@ import observability from '../../docs/observability.md?raw'
 import cliReference from '../../docs/cli-reference.md?raw'
 import securityModel from '../../docs/security-model.md?raw'
 import configuration from '../../docs/configuration.md?raw'
+import faq from '../../docs/faq.md?raw'
+import benchmarks from '../../docs/benchmarks.md?raw'
+import migrationGuide from '../../docs/migration-guide.md?raw'
+import productionChecklist from '../../docs/production-checklist.md?raw'
+import relayOperations from '../../docs/relay-operations.md?raw'
+import versioning from '../../docs/versioning.md?raw'
 
 export interface DocEntry {
   slug: string
@@ -47,7 +53,13 @@ export const docs: DocEntry[] = [
   { slug: 'observability', title: 'Observability & Monitoring', content: observability, group: 'Operations' },
   { slug: 'security-model', title: 'Security Model', content: securityModel, group: 'Operations' },
   { slug: 'troubleshooting', title: 'Troubleshooting', content: troubleshooting, group: 'Operations' },
+  { slug: 'relay-operations', title: 'Relay Operations', content: relayOperations, group: 'Operations' },
+  { slug: 'production-checklist', title: 'Production Checklist', content: productionChecklist, group: 'Operations' },
   { slug: 'cli-reference', title: 'CLI Reference', content: cliReference, group: 'Reference' },
+  { slug: 'benchmarks', title: 'Benchmarks', content: benchmarks, group: 'Reference' },
+  { slug: 'versioning', title: 'Versioning', content: versioning, group: 'Reference' },
+  { slug: 'migration-guide', title: 'Migration Guide', content: migrationGuide, group: 'Reference' },
+  { slug: 'faq', title: 'FAQ', content: faq, group: 'Reference' },
   { slug: 'glossary', title: 'Glossary', content: glossary, group: 'Reference' },
   { slug: 'integrations', title: 'Overview', content: integrationsOverview, group: 'Integrations' },
   { slug: 'integrations/mcp-setup', title: 'MCP Server', content: mcpSetup, group: 'Integrations' },
